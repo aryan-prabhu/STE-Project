@@ -1,0 +1,12 @@
+#MATLAB compiled files
+*.asv
+*.mex*
+*.p
+*.mlapp
+*.mat
+*.fig
+#MATLAB session files
+octave-workspace
+#OS junk
+.DS_Store
+Thumbs.db
