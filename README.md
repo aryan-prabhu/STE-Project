@@ -1,27 +1,23 @@
 # Joint Source Localisation and Probabilistic Boundary Tracking in Atmospheric Dispersion
 
 **M.Tech Research Project — Aerospace Dynamics and Control, IIT Bombay**  
-**Author:** Aryan Prabhu | **Supervisor:** Dr. Rohit Nanavati]
+**Author:** Aryan Prabhu | **Supervisor:** Dr. Rohit Nanavati
 
 ---
 
 ## Overview
 
-This repository implements a Bayesian framework for Source Term Estimation (STE) 
-in 2D atmospheric dispersion. The core scientific contribution is the **Dual 
-Information Gain (DIG)** motion policy for UAV-based source localisation, which 
-exploits the duality between the plume boundary (a level set of the concentration 
-field) and the source parameters θ = (x_s, y_s, Q) as dual representations of 
-the same advection-diffusion process.
+This repository implements a Bayesian framework for Source Term Estimation (STE) in 2D atmospheric dispersion. The core scientific contribution is the **Dual Information Gain (DIG)** motion policy for UAV-based source localisation, which exploits the duality between the plume boundary (a level set of the concentration field) and the source parameters θ = (x_s, y_s, Q) as dual representations of the same advection-diffusion process.
 
 ## Research Questions
 
 - **RQ1:** Is the coupled Bayesian formulation well-posed?
 - **RQ2:** Does DIG outperform Entrotaxis under matched sensor budgets?
-- **RQ3:** Does an optimal trade-off parameter λ* exist, and how does it scale 
-  with noise, wind variability, and prior width?
+- **RQ3:** Does an optimal trade-off parameter λ* exist, and how does it scale with noise, wind variability, and prior width?
 
 ## Repository Structure
+
+```
 STE_project/
 ├── src/                  # Core classes (OOP, MATLAB R2025b)
 │   ├── AdvectionDiffusion2D.m   # Eq. 1: 2D advection-diffusion PDE solver
@@ -33,6 +29,7 @@ STE_project/
 │   └── plumeConc.m              # Per-particle concentration prediction
 ├── tests/                # Validation scripts
 └── startup.m             # Path setup
+```
 
 ## Current Status
 
