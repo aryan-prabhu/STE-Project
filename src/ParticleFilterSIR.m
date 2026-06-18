@@ -5,9 +5,9 @@ classdef ParticleFilterSIR < handle
     % the prior; weights initialised uniform. Q held aside for now.
 
     properties
-        N           % number of particles
-        particles   % N-by-2 array: column 1 = x_s, column 2 = y_s
-        weights     % N-by-1 array: one weight per particle
+        N          % number of particles
+        particles  % N-by-2 array: column 1 = x_s, column 2 = y_s
+        weights    % N-by-1 array: one weight per particle
     end
 
     methods
@@ -23,25 +23,25 @@ classdef ParticleFilterSIR < handle
             obj.weights = ones(N, 1) / N;
         end
         function update(obj, y_k, sensor, u, D, Q)
-            % Eq (4): single measurement update — reweight particles by likelihood.
+            % Eq (4): single measurement update -- reweight particles by likelihood.
             % y_k    : the noisy sensor reading (scalar)
             % sensor : a PointSensor object (knows its own x, y, sigma)
             % u,v,D,Q: forward-model parameters, known constants for Day 8
 
-            g = zeros(obj.N, 1);              % likelihood for each particle
+            g = zeros(obj.N, 1);            % likelihood for each particle
 
             for i = 1:obj.N
-                x_s = obj.particles(i, 1);    % this particle's hypothesised source x
-                y_s = obj.particles(i, 2);    % this particle's hypothesised source y
+                x_s = obj.particles(i, 1);  % this particle's hypothesised source x
+                y_s = obj.particles(i, 2);  % this particle's hypothesised source y
 
                 % predicted concentration at the sensor IF the source were here
                 c_pred = plumeConc(x_s, y_s, sensor.x, sensor.y, u, D, Q);
 
-                r = y_k - c_pred;                         % residual
+                r = y_k - c_pred;                       % residual
                 g(i) = exp( -r^2 / (2 * sensor.sigma^2) );% likelihood (taper)
             end
 
-            obj.weights = obj.weights .* g;               % Bayes: prior x evidence
+            obj.weights = obj.weights .* g;            % Bayes: prior x evidence
             obj.weights = obj.weights / sum(obj.weights); % renormalise to sum 1
         end
         function ess = computeESS(obj)
@@ -58,7 +58,7 @@ classdef ParticleFilterSIR < handle
             % 1. Cumulative sum of weights: a [0,1] number line
             %    partitioned into N bins, bin i sized by weight i.
             edges = cumsum(obj.weights);
-            edges(end) = 1;                 % guard against rounding
+            edges(end) = 1;                  % guard against rounding
 
             % 2. One random start in [0, 1/N), then N evenly
             %    spaced pointers 1/N apart.
@@ -79,11 +79,54 @@ classdef ParticleFilterSIR < handle
             obj.particles = obj.particles(idx, :);
             obj.weights   = ones(N, 1) / N;
         end
+        function roughen(obj, K)
+            % Roughening kernel (Gordon, Salmond & Smith 1993): adds small
+            % artificial jitter to EVERY particle, intended to be called
+            % immediately AFTER resample(). Under the static-source
+            % assumption (theta_k = theta_{k-1}, zero process noise),
+            % resampling's diversity loss has no natural repair mechanism
+            % -- this is that repair, added deliberately and not part of
+            % the originally-validated static-source filter. Flag this as
+            % a methodological addition in the report/diary rather than
+            % treating it as "the same filter, just fixed."
+            %
+            %   sigma_j = K * E_j * N^(-1/d)
+            %     E_j = range (max-min) of the CURRENT particle cloud in
+            %           dimension j -- self-adjusting: shrinks as the
+            %           posterior narrows, so roughening backs off
+            %           automatically rather than permanently inflating
+            %           uncertainty.
+            %     N   = number of particles
+            %     d   = number of estimated dimensions (2: x_s, y_s)
+            %     K   = tuning constant. Default 0.2 is Gordon's suggested
+            %           value -- too large washes out a precise estimate,
+            %           too small does nothing. Adjust empirically.
+            %
+            % Applied uniformly to ALL particles, not just exact
+            % duplicates -- standard practice, since duplicates aren't
+            % explicitly tracked, and the jitter is small relative to
+            % cloud spread so non-duplicates are negligibly affected.
+            if nargin < 2
+                K = 0.2;
+            end
+            d = 2;
+            Ex = max(obj.particles(:,1)) - min(obj.particles(:,1));
+            Ey = max(obj.particles(:,2)) - min(obj.particles(:,2));
+            sigma_x = K * Ex * obj.N^(-1/d);
+            sigma_y = K * Ey * obj.N^(-1/d);
+            obj.particles(:,1) = obj.particles(:,1) + sigma_x * randn(obj.N, 1);
+            obj.particles(:,2) = obj.particles(:,2) + sigma_y * randn(obj.N, 1);
+            % EDGE CASE, not specially handled: if the cloud has already
+            % collapsed to a single exact point, Ex=Ey=0 and this is a
+            % no-op. Roughening prevents impoverishment from getting that
+            % bad in the first place; it cannot un-collapse a cloud that
+            % already has.
+        end
         function H = computeEntropy(obj)
             % Shannon entropy of the weight vector.
             % H in [0, log(N)]: 0 = certain, log(N) = maximally uncertain.
             w = obj.weights;
-            w = w(w > 0);                  % drop zeros: 0*log(0) := 0
+            w = w(w > 0);                    % drop zeros: 0*log(0) := 0
             H = -sum(w .* log(w));
         end
     end
