@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>STE Project — Run Output Gallery</title>
+<style>
+  :root {
+    --bg: #0f1216; --panel: #161b21; --panel-2: #1d232b; --border: #2a323c;
+    --text: #e8ecf1; --text-dim: #9aa5b1; --accent: #5b9bd5; --accent-2: #e07a3f;
+    --tag-current: #3fa66a; --tag-superseded: #b5824a; --tag-exploratory: #6a7280;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+  }
+  header {
+    padding: 28px 32px 18px; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: rgba(15,18,22,0.95); backdrop-filter: blur(6px); z-index: 10;
+  }
+  header h1 { margin: 0 0 4px; font-size: 1.4rem; font-weight: 600; }
+  header .sub { color: var(--text-dim); font-size: 0.85rem; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .nav-item {
+    padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; text-decoration: none;
+    background: var(--panel-2); color: var(--text); border: 1px solid var(--border);
+  }
+  .nav-item:hover { border-color: var(--accent); }
+  .tag-current { border-left: 3px solid var(--tag-current); }
+  .tag-superseded { border-left: 3px solid var(--tag-superseded); }
+  .tag-exploratory { border-left: 3px solid var(--tag-exploratory); }
+  main { padding: 24px 32px 60px; max-width: 1400px; margin: 0 auto; }
+  .run-section { margin-bottom: 48px; }
+  .run-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .run-header h2 { margin: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
+  .run-date { color: var(--text-dim); font-size: 0.8rem; }
+  .tag {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 2px 8px; border-radius: 10px; font-weight: 600;
+  }
+  .tag-current.tag { background: rgba(63,166,106,0.18); color: var(--tag-current); }
+  .tag-superseded.tag { background: rgba(181,130,74,0.18); color: var(--tag-superseded); }
+  .tag-exploratory.tag { background: rgba(106,114,128,0.18); color: var(--tag-exploratory); }
+  .run-note { color: var(--text-dim); font-size: 0.85rem; max-width: 900px; margin: 8px 0 18px; }
+  .card-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px;
+  }
+  .card {
+    display: block; background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; text-decoration: none; color: var(--text); transition: border-color 0.15s, transform 0.15s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .thumb-wrap {
+    aspect-ratio: 4/3; background: #0b0d10; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .thumb-wrap img { width: 100%; height: 100%; object-fit: contain; }
+  .card-label {
+    padding: 8px 10px; font-size: 0.72rem; display: flex; flex-direction: column; gap: 4px;
+    border-top: 1px solid var(--border);
+  }
+  .badge { color: var(--text-dim); font-size: 0.65rem; }
+  .empty { color: var(--text-dim); font-size: 0.85rem; }
+  footer { padding: 20px 32px 40px; color: var(--text-dim); font-size: 0.75rem; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<header>
+  <h1>STE Project — Run Output Gallery</h1>
+  <div class="sub">Joint Source Localisation &amp; Probabilistic Boundary Tracking &middot; generated 2026-07-09 19:02 &middot; click any thumbnail to open the original PDF/EPS/GIF</div>
+  <nav><a href="#full_pipeline_correct_metrics" class="nav-item tag-current">full_pipeline_correct_metrics</a><a href="#full_pipeline_2" class="nav-item tag-superseded">full_pipeline_2</a><a href="#full_pipeline" class="nav-item tag-superseded">full_pipeline</a><a href="#model_mismatch" class="nav-item tag-exploratory">model_mismatch</a><a href="#3dimensional_theta_rough_upwind_start" class="nav-item tag-exploratory">3dimensional_theta_rough_upwind_start</a><a href="#3dimensional_theta_rough" class="nav-item tag-exploratory">3dimensional_theta_rough</a><a href="#3dimensional_theta" class="nav-item tag-exploratory">3dimensional_theta</a><a href="#earlier" class="nav-item tag-exploratory">earlier</a></nav>
+</header>
+<main>
+
+    <section id="full_pipeline_correct_metrics" class="run-section">
+      <div class="run-header">
+        <h2>full_pipeline_correct_metrics <span class="tag tag-current">current</span></h2>
+        <div class="run-date">2026-07-08</div>
+      </div>
+      <p class="run-note">Latest integrated run. Absorbing walls, dual IoU/Coverage metrics, joint warning rule (ratio&gt;1.0 AND IoU&lt;0.5). Result: IoU ~0.79, Coverage ~0.96–0.99, area ratio ~1.30 at convergence; warning fired twice, both pre-convergence.</p>
+      <div class="card-grid">
+        
+    <a class="card" href="full_pipeline_correct_metrics/levelset_convergence.gif" target="_blank" title="Open original GIF (4.4MB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_correct_metrics/levelset_convergence_frame0.png" alt="levelset_convergence  (animated)"></div>
+      <div class="card-label">levelset_convergence  (animated)<span class="badge">GIF &middot; 4.4MB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_correct_metrics/particle_cloud_convergence.gif" target="_blank" title="Open original GIF (4.8MB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_correct_metrics/particle_cloud_convergence_frame0.png" alt="particle_cloud_convergence  (animated)"></div>
+      <div class="card-label">particle_cloud_convergence  (animated)<span class="badge">GIF &middot; 4.8MB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_correct_metrics/contour_spaghetti_convergence.pdf" target="_blank" title="Open original PDF (615.6KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_correct_metrics/contour_spaghetti_convergence.png" alt="contour_spaghetti_convergence"></div>
+      <div class="card-label">contour_spaghetti_convergence<span class="badge">PDF &middot; 615.6KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_correct_metrics/field_and_path.pdf" target="_blank" title="Open original PDF (36.6KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_correct_metrics/field_and_path.png" alt="field_and_path"></div>
+      <div class="card-label">field_and_path<span class="badge">PDF &middot; 36.6KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_correct_metrics/iou_ratio_history.pdf" target="_blank" title="Open original PDF (73.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_correct_metrics/iou_ratio_history.png" alt="iou_ratio_history"></div>
+      <div class="card-label">iou_ratio_history<span class="badge">PDF &middot; 73.1KB</span></div>
+    </a>
+      </div>
+    </section>
+    <section id="full_pipeline_2" class="run-section">
+      <div class="run-header">
+        <h2>full_pipeline_2 <span class="tag tag-superseded">superseded</span></h2>
+        <div class="run-date">2026-07-07</div>
+      </div>
+      <p class="run-note">Intermediate run — ratio-only warning rule at threshold 1.0 (IoU temporarily removed). Warning fired on almost every iteration from ~iter 65 onward, including at convergence, because Coverage alone doesn't penalise an oversized-but-containing estimate. Superseded by full_pipeline_correct_metrics.</p>
+      <div class="card-grid">
+        
+    <a class="card" href="full_pipeline_2/levelset_convergence.gif" target="_blank" title="Open original GIF (4.4MB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_2/levelset_convergence_frame0.png" alt="levelset_convergence  (animated)"></div>
+      <div class="card-label">levelset_convergence  (animated)<span class="badge">GIF &middot; 4.4MB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/particle_cloud_convergence.gif" target="_blank" title="Open original GIF (4.9MB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_2/particle_cloud_convergence_frame0.png" alt="particle_cloud_convergence  (animated)"></div>
+      <div class="card-label">particle_cloud_convergence  (animated)<span class="badge">GIF &middot; 4.9MB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/contour_spaghetti_convergence.pdf" target="_blank" title="Open original PDF (639.4KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_2/contour_spaghetti_convergence.png" alt="contour_spaghetti_convergence"></div>
+      <div class="card-label">contour_spaghetti_convergence<span class="badge">PDF &middot; 639.4KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/field_and_path.pdf" target="_blank" title="Open original PDF (37.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_2/field_and_path.png" alt="field_and_path"></div>
+      <div class="card-label">field_and_path<span class="badge">PDF &middot; 37.0KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/iou_ratio_history.pdf" target="_blank" title="Open original PDF (56.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline_2/iou_ratio_history.png" alt="iou_ratio_history"></div>
+      <div class="card-label">iou_ratio_history<span class="badge">PDF &middot; 56.0KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/levelset_convergence_frame001.png" target="_blank" title="Open original PNG (76.7KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/levelset_convergence_frame001.png" alt="levelset_convergence_frame001"></div>
+      <div class="card-label">levelset_convergence_frame001<span class="badge">PNG &middot; 76.7KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/levelset_convergence_frame034.png" target="_blank" title="Open original PNG (78.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/levelset_convergence_frame034.png" alt="levelset_convergence_frame034"></div>
+      <div class="card-label">levelset_convergence_frame034<span class="badge">PNG &middot; 78.1KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/levelset_convergence_frame067.png" target="_blank" title="Open original PNG (78.4KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/levelset_convergence_frame067.png" alt="levelset_convergence_frame067"></div>
+      <div class="card-label">levelset_convergence_frame067<span class="badge">PNG &middot; 78.4KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/levelset_convergence_frame100.png" target="_blank" title="Open original PNG (79.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/levelset_convergence_frame100.png" alt="levelset_convergence_frame100"></div>
+      <div class="card-label">levelset_convergence_frame100<span class="badge">PNG &middot; 79.0KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/particle_cloud_convergence_frame001.png" target="_blank" title="Open original PNG (203.4KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/particle_cloud_convergence_frame001.png" alt="particle_cloud_convergence_frame001"></div>
+      <div class="card-label">particle_cloud_convergence_frame001<span class="badge">PNG &middot; 203.4KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/particle_cloud_convergence_frame034.png" target="_blank" title="Open original PNG (66.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/particle_cloud_convergence_frame034.png" alt="particle_cloud_convergence_frame034"></div>
+      <div class="card-label">particle_cloud_convergence_frame034<span class="badge">PNG &middot; 66.2KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/particle_cloud_convergence_frame067.png" target="_blank" title="Open original PNG (53.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/particle_cloud_convergence_frame067.png" alt="particle_cloud_convergence_frame067"></div>
+      <div class="card-label">particle_cloud_convergence_frame067<span class="badge">PNG &middot; 53.2KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline_2/particle_cloud_convergence_frame100.png" target="_blank" title="Open original PNG (80.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="full_pipeline_2/particle_cloud_convergence_frame100.png" alt="particle_cloud_convergence_frame100"></div>
+      <div class="card-label">particle_cloud_convergence_frame100<span class="badge">PNG &middot; 80.0KB</span></div>
+    </a>
+      </div>
+    </section>
+    <section id="full_pipeline" class="run-section">
+      <div class="run-header">
+        <h2>full_pipeline <span class="tag tag-superseded">superseded</span></h2>
+        <div class="run-date">2026-07-07</div>
+      </div>
+      <p class="run-note">Earliest integrated pipeline run (Tasks 1+2+3 combined), predates the IoU/Coverage dual-metric change.</p>
+      <div class="card-grid">
+        
+    <a class="card" href="full_pipeline/convergence_animation.gif" target="_blank" title="Open original GIF (6.7MB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline/convergence_animation_frame0.png" alt="convergence_animation  (animated)"></div>
+      <div class="card-label">convergence_animation  (animated)<span class="badge">GIF &middot; 6.7MB</span></div>
+    </a>
+    <a class="card" href="full_pipeline/contour_overlay_final.pdf" target="_blank" title="Open original PDF (16.3KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline/contour_overlay_final.png" alt="contour_overlay_final"></div>
+      <div class="card-label">contour_overlay_final<span class="badge">PDF &middot; 16.3KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline/contour_spaghetti_convergence.pdf" target="_blank" title="Open original PDF (591.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline/contour_spaghetti_convergence.png" alt="contour_spaghetti_convergence"></div>
+      <div class="card-label">contour_spaghetti_convergence<span class="badge">PDF &middot; 591.0KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline/field_and_path.pdf" target="_blank" title="Open original PDF (37.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline/field_and_path.png" alt="field_and_path"></div>
+      <div class="card-label">field_and_path<span class="badge">PDF &middot; 37.0KB</span></div>
+    </a>
+    <a class="card" href="full_pipeline/iou_ratio_history.pdf" target="_blank" title="Open original PDF (69.6KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/full_pipeline/iou_ratio_history.png" alt="iou_ratio_history"></div>
+      <div class="card-label">iou_ratio_history<span class="badge">PDF &middot; 69.6KB</span></div>
+    </a>
+      </div>
+    </section>
+    <section id="model_mismatch" class="run-section">
+      <div class="run-header">
+        <h2>model_mismatch <span class="tag tag-exploratory">exploratory</span></h2>
+        <div class="run-date">2026-07-06</div>
+      </div>
+      <p class="run-note">Report Sections 3.1–3.8 diagnostics: centreline % error, spatial error map, sanity check. Derived under the old Dirichlet-wall assumption — not yet re-run under absorbing walls (open item).</p>
+      <div class="card-grid">
+        
+    <a class="card" href="model_mismatch/pct_error_centerline.eps" target="_blank" title="Open original EPS (22.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/model_mismatch/pct_error_centerline.png" alt="pct_error_centerline"></div>
+      <div class="card-label">pct_error_centerline<span class="badge">EPS &middot; 22.2KB</span></div>
+    </a>
+    <a class="card" href="model_mismatch/pct_error_centerline_warmup600.eps" target="_blank" title="Open original EPS (28.6KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/model_mismatch/pct_error_centerline_warmup600.png" alt="pct_error_centerline_warmup600"></div>
+      <div class="card-label">pct_error_centerline_warmup600<span class="badge">EPS &middot; 28.6KB</span></div>
+    </a>
+    <a class="card" href="model_mismatch/pct_error_spatial_map.eps" target="_blank" title="Open original EPS (24.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/model_mismatch/pct_error_spatial_map.png" alt="pct_error_spatial_map"></div>
+      <div class="card-label">pct_error_spatial_map<span class="badge">EPS &middot; 24.0KB</span></div>
+    </a>
+    <a class="card" href="model_mismatch/pct_error_vs_downwind_distance.eps" target="_blank" title="Open original EPS (21.9KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/model_mismatch/pct_error_vs_downwind_distance.png" alt="pct_error_vs_downwind_distance"></div>
+      <div class="card-label">pct_error_vs_downwind_distance<span class="badge">EPS &middot; 21.9KB</span></div>
+    </a>
+    <a class="card" href="model_mismatch/sanity_check.eps" target="_blank" title="Open original EPS (11.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/model_mismatch/sanity_check.png" alt="sanity_check"></div>
+      <div class="card-label">sanity_check<span class="badge">EPS &middot; 11.0KB</span></div>
+    </a>
+      </div>
+    </section>
+    <section id="3dimensional_theta_rough_upwind_start" class="run-section">
+      <div class="run-header">
+        <h2>3dimensional_theta_rough_upwind_start <span class="tag tag-exploratory">exploratory</span></h2>
+        <div class="run-date">2026-07-04</div>
+      </div>
+      <p class="run-note">Equations 1–4 companion report figures — roughening kernel, upwind-start particle initialisation variant.</p>
+      <div class="card-grid">
+        
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_1.pdf" target="_blank" title="Open original PDF (20.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_1.png" alt="figure_1"></div>
+      <div class="card-label">figure_1<span class="badge">PDF &middot; 20.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_2.pdf" target="_blank" title="Open original PDF (99.3KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_2.png" alt="figure_2"></div>
+      <div class="card-label">figure_2<span class="badge">PDF &middot; 99.3KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_3.pdf" target="_blank" title="Open original PDF (98.7KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_3.png" alt="figure_3"></div>
+      <div class="card-label">figure_3<span class="badge">PDF &middot; 98.7KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_4.pdf" target="_blank" title="Open original PDF (99.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_4.png" alt="figure_4"></div>
+      <div class="card-label">figure_4<span class="badge">PDF &middot; 99.1KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_5.pdf" target="_blank" title="Open original PDF (99.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_5.png" alt="figure_5"></div>
+      <div class="card-label">figure_5<span class="badge">PDF &middot; 99.0KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_6.pdf" target="_blank" title="Open original PDF (95.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_6.png" alt="figure_6"></div>
+      <div class="card-label">figure_6<span class="badge">PDF &middot; 95.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_7.pdf" target="_blank" title="Open original PDF (95.5KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_7.png" alt="figure_7"></div>
+      <div class="card-label">figure_7<span class="badge">PDF &middot; 95.5KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_8.pdf" target="_blank" title="Open original PDF (96.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_8.png" alt="figure_8"></div>
+      <div class="card-label">figure_8<span class="badge">PDF &middot; 96.1KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_9.pdf" target="_blank" title="Open original PDF (96.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_9.png" alt="figure_9"></div>
+      <div class="card-label">figure_9<span class="badge">PDF &middot; 96.1KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_10.pdf" target="_blank" title="Open original PDF (96.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_10.png" alt="figure_10"></div>
+      <div class="card-label">figure_10<span class="badge">PDF &middot; 96.0KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_11.pdf" target="_blank" title="Open original PDF (96.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_11.png" alt="figure_11"></div>
+      <div class="card-label">figure_11<span class="badge">PDF &middot; 96.1KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_12.pdf" target="_blank" title="Open original PDF (96.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_12.png" alt="figure_12"></div>
+      <div class="card-label">figure_12<span class="badge">PDF &middot; 96.0KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_13.pdf" target="_blank" title="Open original PDF (95.3KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_13.png" alt="figure_13"></div>
+      <div class="card-label">figure_13<span class="badge">PDF &middot; 95.3KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_14.pdf" target="_blank" title="Open original PDF (95.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_14.png" alt="figure_14"></div>
+      <div class="card-label">figure_14<span class="badge">PDF &middot; 95.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_15.pdf" target="_blank" title="Open original PDF (95.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_15.png" alt="figure_15"></div>
+      <div class="card-label">figure_15<span class="badge">PDF &middot; 95.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_16.pdf" target="_blank" title="Open original PDF (95.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_16.png" alt="figure_16"></div>
+      <div class="card-label">figure_16<span class="badge">PDF &middot; 95.1KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_17.pdf" target="_blank" title="Open original PDF (95.4KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_17.png" alt="figure_17"></div>
+      <div class="card-label">figure_17<span class="badge">PDF &middot; 95.4KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_18.pdf" target="_blank" title="Open original PDF (95.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_18.png" alt="figure_18"></div>
+      <div class="card-label">figure_18<span class="badge">PDF &middot; 95.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_19.pdf" target="_blank" title="Open original PDF (95.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_19.png" alt="figure_19"></div>
+      <div class="card-label">figure_19<span class="badge">PDF &middot; 95.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_20.pdf" target="_blank" title="Open original PDF (95.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_20.png" alt="figure_20"></div>
+      <div class="card-label">figure_20<span class="badge">PDF &middot; 95.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_21.pdf" target="_blank" title="Open original PDF (95.3KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_21.png" alt="figure_21"></div>
+      <div class="card-label">figure_21<span class="badge">PDF &middot; 95.3KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough_upwind_start/figure_22.pdf" target="_blank" title="Open original PDF (17.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough_upwind_start/figure_22.png" alt="figure_22"></div>
+      <div class="card-label">figure_22<span class="badge">PDF &middot; 17.1KB</span></div>
+    </a>
+      </div>
+    </section>
+    <section id="3dimensional_theta_rough" class="run-section">
+      <div class="run-header">
+        <h2>3dimensional_theta_rough <span class="tag tag-exploratory">exploratory</span></h2>
+        <div class="run-date">2026-07-04</div>
+      </div>
+      <p class="run-note">Equations 1–4 companion report figures — roughening kernel variant.</p>
+      <div class="card-grid">
+        
+    <a class="card" href="3dimensional_theta_rough/figure_1.pdf" target="_blank" title="Open original PDF (20.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_1.png" alt="figure_1"></div>
+      <div class="card-label">figure_1<span class="badge">PDF &middot; 20.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_2.pdf" target="_blank" title="Open original PDF (99.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_2.png" alt="figure_2"></div>
+      <div class="card-label">figure_2<span class="badge">PDF &middot; 99.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_3.pdf" target="_blank" title="Open original PDF (98.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_3.png" alt="figure_3"></div>
+      <div class="card-label">figure_3<span class="badge">PDF &middot; 98.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_4.pdf" target="_blank" title="Open original PDF (95.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_4.png" alt="figure_4"></div>
+      <div class="card-label">figure_4<span class="badge">PDF &middot; 95.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_5.pdf" target="_blank" title="Open original PDF (93.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_5.png" alt="figure_5"></div>
+      <div class="card-label">figure_5<span class="badge">PDF &middot; 93.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_6.pdf" target="_blank" title="Open original PDF (93.5KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_6.png" alt="figure_6"></div>
+      <div class="card-label">figure_6<span class="badge">PDF &middot; 93.5KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_7.pdf" target="_blank" title="Open original PDF (93.7KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_7.png" alt="figure_7"></div>
+      <div class="card-label">figure_7<span class="badge">PDF &middot; 93.7KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_8.pdf" target="_blank" title="Open original PDF (93.5KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_8.png" alt="figure_8"></div>
+      <div class="card-label">figure_8<span class="badge">PDF &middot; 93.5KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_9.pdf" target="_blank" title="Open original PDF (89.5KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_9.png" alt="figure_9"></div>
+      <div class="card-label">figure_9<span class="badge">PDF &middot; 89.5KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_10.pdf" target="_blank" title="Open original PDF (89.4KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_10.png" alt="figure_10"></div>
+      <div class="card-label">figure_10<span class="badge">PDF &middot; 89.4KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_11.pdf" target="_blank" title="Open original PDF (89.5KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_11.png" alt="figure_11"></div>
+      <div class="card-label">figure_11<span class="badge">PDF &middot; 89.5KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta_rough/figure_12.pdf" target="_blank" title="Open original PDF (11.6KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta_rough/figure_12.png" alt="figure_12"></div>
+      <div class="card-label">figure_12<span class="badge">PDF &middot; 11.6KB</span></div>
+    </a>
+      </div>
+    </section>
+    <section id="3dimensional_theta" class="run-section">
+      <div class="run-header">
+        <h2>3dimensional_theta <span class="tag tag-exploratory">exploratory</span></h2>
+        <div class="run-date">2026-07-04</div>
+      </div>
+      <p class="run-note">Equations 1–4 companion report figures — baseline (x_s, y_s, Q) particle filter, no roughening.</p>
+      <div class="card-grid">
+        
+    <a class="card" href="3dimensional_theta/figure_1.pdf" target="_blank" title="Open original PDF (20.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_1.png" alt="figure_1"></div>
+      <div class="card-label">figure_1<span class="badge">PDF &middot; 20.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_2.pdf" target="_blank" title="Open original PDF (99.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_2.png" alt="figure_2"></div>
+      <div class="card-label">figure_2<span class="badge">PDF &middot; 99.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_3.pdf" target="_blank" title="Open original PDF (98.2KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_3.png" alt="figure_3"></div>
+      <div class="card-label">figure_3<span class="badge">PDF &middot; 98.2KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_4.pdf" target="_blank" title="Open original PDF (10.5KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_4.png" alt="figure_4"></div>
+      <div class="card-label">figure_4<span class="badge">PDF &middot; 10.5KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_5.pdf" target="_blank" title="Open original PDF (10.7KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_5.png" alt="figure_5"></div>
+      <div class="card-label">figure_5<span class="badge">PDF &middot; 10.7KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_6.pdf" target="_blank" title="Open original PDF (10.6KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_6.png" alt="figure_6"></div>
+      <div class="card-label">figure_6<span class="badge">PDF &middot; 10.6KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_7.pdf" target="_blank" title="Open original PDF (10.7KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_7.png" alt="figure_7"></div>
+      <div class="card-label">figure_7<span class="badge">PDF &middot; 10.7KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_8.pdf" target="_blank" title="Open original PDF (10.7KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_8.png" alt="figure_8"></div>
+      <div class="card-label">figure_8<span class="badge">PDF &middot; 10.7KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_9.pdf" target="_blank" title="Open original PDF (9.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_9.png" alt="figure_9"></div>
+      <div class="card-label">figure_9<span class="badge">PDF &middot; 9.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_10.pdf" target="_blank" title="Open original PDF (9.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_10.png" alt="figure_10"></div>
+      <div class="card-label">figure_10<span class="badge">PDF &middot; 9.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_11.pdf" target="_blank" title="Open original PDF (9.8KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_11.png" alt="figure_11"></div>
+      <div class="card-label">figure_11<span class="badge">PDF &middot; 9.8KB</span></div>
+    </a>
+    <a class="card" href="3dimensional_theta/figure_12.pdf" target="_blank" title="Open original PDF (10.0KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/3dimensional_theta/figure_12.png" alt="figure_12"></div>
+      <div class="card-label">figure_12<span class="badge">PDF &middot; 10.0KB</span></div>
+    </a>
+      </div>
+    </section>
+    <section id="earlier" class="run-section">
+      <div class="run-header">
+        <h2>earlier <span class="tag tag-exploratory">exploratory</span></h2>
+        <div class="run-date">2026-07-08 (source figures from 2026-07-07)</div>
+      </div>
+      <p class="run-note">Loose figure exports (figure_13/17/21/22), unlabelled subset carried over from an earlier session.</p>
+      <div class="card-grid">
+        
+    <a class="card" href="earlier/figure_13.pdf" target="_blank" title="Open original PDF (95.3KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/earlier/figure_13.png" alt="figure_13"></div>
+      <div class="card-label">figure_13<span class="badge">PDF &middot; 95.3KB</span></div>
+    </a>
+    <a class="card" href="earlier/figure_17.pdf" target="_blank" title="Open original PDF (95.4KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/earlier/figure_17.png" alt="figure_17"></div>
+      <div class="card-label">figure_17<span class="badge">PDF &middot; 95.4KB</span></div>
+    </a>
+    <a class="card" href="earlier/figure_21.pdf" target="_blank" title="Open original PDF (95.3KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/earlier/figure_21.png" alt="figure_21"></div>
+      <div class="card-label">figure_21<span class="badge">PDF &middot; 95.3KB</span></div>
+    </a>
+    <a class="card" href="earlier/figure_22.pdf" target="_blank" title="Open original PDF (17.1KB)">
+      <div class="thumb-wrap"><img loading="lazy" src="_dashboard_thumbs/earlier/figure_22.png" alt="figure_22"></div>
+      <div class="card-label">figure_22<span class="badge">PDF &middot; 17.1KB</span></div>
+    </a>
+      </div>
+    </section>
+</main>
+<footer>
+  Static gallery generated from <code>figs/images/after_lawnmower/</code>. Regenerate by re-running the thumbnail script after new experiment runs — this page does not auto-refresh (no numeric run metrics are currently persisted to disk; see chat for details).
+</footer>
+</body>
+</html>
